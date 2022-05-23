@@ -37,4 +37,24 @@ describe Label do
       expect(actual_id).to be > 0
     end
   end
+
+  context 'The add_item method' do
+    require './lib/item'
+
+    title = 'abc'
+    color = 'red'
+    the_label = Label.new(title, color)
+
+    published_date = 1234
+    the_item = Item.new(published_date)
+
+    expected_items = [the_item]
+
+    the_label.add_item(the_item)
+    actual_items = the_label.items
+
+    it 'adds the given item to the items array' do
+      expect(actual_items).to eq expected_items
+    end
+  end
 end
