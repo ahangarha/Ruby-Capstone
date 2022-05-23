@@ -49,12 +49,18 @@ describe Label do
     the_item = Item.new(published_date)
 
     expected_items = [the_item]
+    expected_item_label = the_label
 
     the_label.add_item(the_item)
     actual_items = the_label.items
+    actual_item_label = the_item.label
 
     it 'adds the given item to the items array' do
       expect(actual_items).to eq expected_items
+    end
+
+    it 'adds itself to the item label' do
+      expect(actual_item_label).to eq expected_item_label
     end
   end
 end
