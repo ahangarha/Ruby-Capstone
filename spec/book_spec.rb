@@ -34,4 +34,39 @@ describe Book do
       expect(actual).to eq expected
     end
   end
+
+  context 'can_be_archived method' do
+    it 'returns true if parent return true' do
+      publisher = 'abc'
+      cover_state = 'efg'
+      publish_date = Time.now.year - 15
+
+      the_book = Book.new(publisher, cover_state, publish_date)
+      actual = the_book.can_be_archived?
+      expected = true
+      expect(actual).to be expected
+    end
+
+    it 'returns true if cover_state is "bad"' do
+      publisher = 'abc'
+      cover_state = 'bad'
+      publish_date = Time.now.year - 5
+
+      the_book = Book.new(publisher, cover_state, publish_date)
+      actual = the_book.can_be_archived?
+      expected = true
+      expect(actual).to be expected
+    end
+
+    it 'returns false if nither parent class returns true nore cover_state is "bad"' do
+      publisher = 'abc'
+      cover_state = 'not bad'
+      publish_date = Time.now.year - 5
+
+      the_book = Book.new(publisher, cover_state, publish_date)
+      actual = the_book.can_be_archived?
+      expected = false
+      expect(actual).to be expected
+    end
+  end
 end

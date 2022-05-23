@@ -8,4 +8,11 @@ class Book < Item
     @publisher = publisher
     @cover_state = cover_state
   end
+
+  def can_be_archived?
+    return true if super
+    return true if @cover_state == 'bad'
+
+    false
+  end
 end
