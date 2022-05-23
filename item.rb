@@ -1,8 +1,9 @@
 class Item
   attr_accessor :publish_date
   attr_reader :archived
+  attr_writer :genre, :author, :source, :label
 
-  def initialize( id: rand(1..1000), publish_date, archived: false )
+  def initialize(publish_date, archived: false, id: rand(1..1000))
     @id = id
     @publish_date = publish_date
     @archived = archived
@@ -12,23 +13,8 @@ class Item
     @archived = true if can_be_archived?
   end
 
-  def genre=(genre)
-    @genre = genre
-  end
-
-  def author=(author)
-    @author = author
-  end
-
-  def source=(source)
-    @source = source
-  end
-
-  def label=(label)
-    @label = label
-  end
-
   private
+
   def can_be_archived?
     current_year = Time.now.year
     current_year - publish_date > 10
