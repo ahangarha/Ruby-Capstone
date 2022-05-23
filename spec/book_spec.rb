@@ -1,5 +1,4 @@
-require './item'
-require './book'
+require './lib/book'
 
 describe Book do
   context 'The book class' do
