@@ -12,6 +12,22 @@ class Item
     @archived = true if can_be_archived?
   end
 
+  def genre=(genre)
+    @genre = genre
+  end
+
+  def author=(author)
+    @author = author
+  end
+
+  def source=(source)
+    @source = source
+  end
+
+  def label=(label)
+    @label = label
+  end
+
   private
   def can_be_archived?
     current_year = 2022
