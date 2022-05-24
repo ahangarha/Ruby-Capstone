@@ -11,6 +11,12 @@ CREATE TABLE books(
     archived BOOLEAN,
     publisher VARCHAR(255),
     cover_state VARCHAR(255),
-    label_id INT,
+    genre_id INT NULL,
+    author_id INT NULL,
+    source_id INT NULL,
+    label_id INT NULL,
+    FOREIGN KEY (genre_id) REFERENCES genres(id),
+    FOREIGN KEY (author_id) REFERENCES authors(id),
+    FOREIGN KEY (source_id) REFERENCES sources(id),
     FOREIGN KEY (label_id) REFERENCES labels(id)
 );
