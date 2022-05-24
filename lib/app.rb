@@ -1,5 +1,13 @@
+require_relative './display'
+require_relative './create'
+
 class App
   def initialize
+    @state = {
+      books: [],
+      labels: []
+    }
+
     @list_options = [
       'List all books',
       'List all music albums',
@@ -17,8 +25,26 @@ class App
     ]
   end
 
+  def list_all_books
+    DisplayBooks.list(@state[:books])
+  end
+
+  def list_all_labels
+    DisplayLabels.list(@state[:labels])
+  end
+
+  def add_book
+    @state[:books] << CreateBook.create
+  end
+
   def launch_the_option(option)
     case option
+    when 1
+      list_all_books
+    when 6
+      list_all_labels
+    when 9
+      add_book
     when 13
       exit
     else
