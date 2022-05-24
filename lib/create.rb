@@ -21,4 +21,16 @@ class CreateBook
 
     Book.new(publisher, cover_state, publish_date)
   end
+
+  def self.create_from(books)
+    books.map do |book|
+      Book.new(
+        book['publisher'],
+        book['cover_state'],
+        book['publish_date'],
+        archived: book['archived'],
+        id: book['id']
+      )
+    end
+  end
 end

@@ -24,6 +24,11 @@ class App
       'Add a game',
       'Exit'
     ]
+    load_all_state
+  end
+
+  def load_all_state
+    @state[:books] = CreateBook.create_from(Storage.new('books').load)
   end
 
   def list_all_books
