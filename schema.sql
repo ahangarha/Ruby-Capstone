@@ -1,0 +1,6 @@
+CREATE TABLE labels(
+    id INT GENERATED ALWAYS AS IDENTITY,
+    title VARCHAR(255),
+    color VARCHAR(255),
+    PRIMARY KEY (id)
+);
