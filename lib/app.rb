@@ -45,6 +45,7 @@ class App
 
   def quit
     Storage.new('books').save(@state[:books])
+    Storage.new('labels').save(@state[:labels])
 
     exit
   end
