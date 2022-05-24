@@ -42,7 +42,7 @@ describe Book do
       publish_date = Time.now.year - 15
 
       the_book = Book.new(publisher, cover_state, publish_date)
-      actual = the_book.can_be_archived?
+      actual = the_book.send(:can_be_archived?)
       expected = true
       expect(actual).to be expected
     end
@@ -53,7 +53,7 @@ describe Book do
       publish_date = Time.now.year - 5
 
       the_book = Book.new(publisher, cover_state, publish_date)
-      actual = the_book.can_be_archived?
+      actual = the_book.send(:can_be_archived?)
       expected = true
       expect(actual).to be expected
     end
@@ -64,7 +64,7 @@ describe Book do
       publish_date = Time.now.year - 5
 
       the_book = Book.new(publisher, cover_state, publish_date)
-      actual = the_book.can_be_archived?
+      actual = the_book.send(:can_be_archived?)
       expected = false
       expect(actual).to be expected
     end
