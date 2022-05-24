@@ -17,3 +17,17 @@ class DisplayBooks
     end
   end
 end
+
+class DisplayLabels
+  def self.list(labels)
+    if labels.empty?
+      puts 'No book available!'
+    else
+      labels.each do |label|
+        title = label.title || 'NO TITLE!'
+        color = label.color || 'NO COLOR!'
+        puts "#{title}\t[#{color}]"
+      end
+    end
+  end
+end

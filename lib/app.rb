@@ -3,7 +3,8 @@ require_relative './display'
 class App
   def initialize
     @state = {
-      books: []
+      books: [],
+      labels: []
     }
 
     @list_options = [
@@ -27,10 +28,16 @@ class App
     DisplayBooks.list(@state[:books])
   end
 
+  def list_all_labels
+    DisplayLabels.list(@state[:labels])
+  end
+
   def launch_the_option(option)
     case option
     when 1
       list_all_books
+    when 6
+      list_all_labels
     when 13
       exit
     else
