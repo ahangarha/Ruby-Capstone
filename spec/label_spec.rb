@@ -63,4 +63,23 @@ describe Label do
       expect(actual_item_label).to eq expected_item_label
     end
   end
+
+  context 'to_hash method' do
+    it 'generates correct hash of Label object' do
+      title = 'abc'
+      color = 'red'
+      the_label = Label.new(title, color)
+
+      expected_hash = {
+        id: the_label.id,
+        class: 'Label',
+        title: title,
+        color: color
+      }
+
+      actual_hash = the_label.to_hash
+
+      expect(actual_hash).to eq expected_hash
+    end
+  end
 end
