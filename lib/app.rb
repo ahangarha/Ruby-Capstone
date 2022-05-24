@@ -1,5 +1,6 @@
 require_relative './display'
 require_relative './create'
+require_relative './storage'
 
 class App
   def initialize
@@ -37,6 +38,12 @@ class App
     @state[:books] << CreateBook.create
   end
 
+  def quit
+    Storage.new('books').save(@state[:books])
+
+    exit
+  end
+
   def launch_the_option(option)
     case option
     when 1
@@ -46,7 +53,7 @@ class App
     when 9
       add_book
     when 13
-      exit
+      quit
     else
       puts 'Invalid option!'
     end
