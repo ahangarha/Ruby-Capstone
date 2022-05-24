@@ -10,9 +10,10 @@ class DisplayBooks
       puts 'No book available!'
     else
       books.each do |book|
+        id = book.id
         label = book.label || 'NO LABEL!'
         archived_status = book.archived ? '[ARCHIVED]' : ''
-        puts "#{label}\tpublished at #{book.publish_date}\t#{archived_status}"
+        puts "#{id}\t#{label}\tpublished at #{book.publish_date}\t#{archived_status}"
       end
     end
   end
