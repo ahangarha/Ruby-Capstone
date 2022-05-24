@@ -1,7 +1,5 @@
 class App
   def initialize
-    @state = {}
-
     @list_options = [
       'List all books',
       'List all music albums',
@@ -19,17 +17,21 @@ class App
     ]
   end
 
+  def launch_the_option(option)
+    case option
+    when 13
+      exit
+    else
+      puts 'Invalid option!'
+    end
+  end
+
   def home
     puts 'Please Select an option menu'
     @list_options.each_with_index { |option, i| puts "#{i + 1}-#{option}" }
-    keyed_opt = gets.chomp.to_i
-    if [*1..12].include? keyed_opt
-      puts @list_options[keyed_opt - 1]
-      puts('*' * 50)
-      home
-    else
-      exit
-    end
+    chosen_option = gets.chomp.to_i
+    launch_the_option(chosen_option)
+    home
   end
 
   def run
