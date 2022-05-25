@@ -1,7 +1,7 @@
 class Item
   attr_accessor :publish_date
-  attr_reader :archived, :label, :genre, :id
-  attr_writer :author, :source
+  attr_reader :archived, :label, :genre, :author, :id
+  attr_writer :source
 
   def initialize(publish_date, archived: false, id: rand(1..1000))
     @id = id
@@ -21,6 +21,11 @@ class Item
   def genre=(genre)
     @genre = genre
     genre.add_item(self) unless genre.items.include? self
+  end
+
+  def author=(author)
+    @author = author
+    author.add_item(self) unless author.items.include? self
   end
 
   def to_hash

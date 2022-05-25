@@ -1,5 +1,6 @@
 require_relative './label'
 require_relative './genre'
+require_relative './author'
 
 class Create
   def self.create
@@ -17,6 +18,7 @@ class CreateBook < Create
   def self.create
     label = CreateLabel.create
     genre = CreateGenre.create
+    author = CreateAuthor.create
 
     print 'Publisher: '
     publisher = gets.chomp.strip
@@ -28,6 +30,7 @@ class CreateBook < Create
     book = Book.new(publisher, cover_state, publish_date)
     book.label = label
     book.genre = genre
+    book.author = author
 
     book
   end
@@ -43,6 +46,9 @@ class CreateBook < Create
       )
       the_label = state[:labels].find { |l| l.id == book['label'] }
       new_book.label = the_label
+
+      the_author = state[:author].find { |a| a.id == book['author'] }
+      new_book.author = the_author
 
       new_book
     end
@@ -92,5 +98,25 @@ class CreateMusicAlbum < Create
     puts "#{'-' * 20}Book has been created 🎉#{'-' * 20}"
 
     album
+  end
+end
+
+class CreateAuthor < Create
+  def self.create
+    print 'First Name: '
+    first_name = gets.chomp.strip
+    print 'Last Name: '
+    last_name = gets.chomp.strip
+    Author.new first_name, last_name
+  end
+
+  def self.create_from(authors)
+    authors.map do |author|
+      Author.new(
+        author['first_name'],
+        author['last_name'],
+        id: author['id']
+      )
+    end
   end
 end

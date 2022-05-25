@@ -8,7 +8,8 @@ class App
       books: [],
       labels: [],
       music: [],
-      genres: []
+      genres: [],
+      authors: []
     }
 
     load_all_state
@@ -18,15 +19,12 @@ class App
     [
       'List all books',
       'List all music albums',
-      'List all movies',
       'List of games',
       'List all genres',
       'List all labels',
       'List all authors',
-      'List all sources ',
       'Add a book',
       'Add a music album',
-      'Add a movie',
       'Add a game',
       'Exit'
     ]
@@ -45,11 +43,8 @@ class App
     DisplayLabels.list(@state[:labels])
   end
 
-  def add_book
-    new_book = CreateBook.create
-    @state[:books] << new_book
-    @state[:labels] << new_book.label
-    @state[:genres] << new_book.genre
+  def list_all_authors
+    DisplayAuthors.list(@state[:authors])
   end
 
   def list_music_albums
@@ -58,6 +53,13 @@ class App
 
   def list_genres
     DisplayGenre.list @state[:genres]
+  end
+
+  def add_book
+    new_book = CreateBook.create
+    @state[:books] << new_book
+    @state[:labels] << new_book.label
+    @state[:genres] << new_book.genre
   end
 
   def add_album
