@@ -83,7 +83,7 @@ class App
     @state[:games] << game
     @state[:labels] << game.label
     @state[:genres] << game.genre
-    @state[:author] << game.author
+    @state[:authors] << game.author
   end
 
   def quit
