@@ -5,7 +5,10 @@ class App
   def initialize
     @state = {
       books: [],
-      labels: []
+      labels: [],
+      music: [],
+      genres: []
+
     }
 
     @list_options = [
@@ -37,14 +40,35 @@ class App
     @state[:books] << CreateBook.create
   end
 
+  def list_music_albums
+    DisplayMusic.list @state[:music]
+  end
+
+  def list_genres
+    DisplayGenre.list @state[:genres]
+  end
+
+  def add_album
+    data = CreateMusicAlbum.create
+    @state[:music] << data[:album]
+    @state[:labels] << data[:label]
+    @state[:genres] << data[:genre]
+  end
+
   def launch_the_option(option)
     case option
     when 1
       list_all_books
+    when 2
+      list_music_albums
+    when 5
+      list_genres
     when 6
       list_all_labels
     when 9
       add_book
+    when 10
+      add_album
     when 13
       exit
     else
