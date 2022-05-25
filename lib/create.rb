@@ -3,12 +3,12 @@ class Create
     raise NotImplementedError
   end
 
-  def self.create_from(books_list)
+  def self.create_from(list_of_hashes)
     raise NotImplementedError
   end
 end
 
-class CreateBook
+class CreateBook < Create
   require_relative './book'
 
   def self.create
