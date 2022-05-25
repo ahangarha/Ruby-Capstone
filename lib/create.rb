@@ -172,11 +172,11 @@ class CreateGame < Create
       the_label = state[:labels].find { |l| l.id == game['label'] }
       new_game.label = the_label
 
-      # the_author = state[:authors].find { |a| a.id == game['author'] }
-      # new_game.author = the_author
+      the_author = state[:authors].find { |a| a.id == game['author'] }
+      new_game.author = the_author
 
-      # the_genre = state[:genres].find { |g| g.id == game['genre'] }
-      # new_game.genre = the_genre
+      the_genre = state[:genres].find { |g| g.id == game['genre'] }
+      new_game.genre = the_genre
 
       new_game
     end
