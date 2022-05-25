@@ -6,7 +6,9 @@ class App
   def initialize
     @state = {
       books: [],
-      labels: []
+      labels: [],
+      music: [],
+      genres: []
     }
 
     load_all_state
@@ -46,6 +48,21 @@ class App
     @state[:books] << CreateBook.create
   end
 
+  def list_music_albums
+    DisplayMusic.list @state[:music]
+  end
+
+  def list_genres
+    DisplayGenre.list @state[:genres]
+  end
+
+  def add_album
+    album = CreateMusicAlbum.create
+    @state[:music] << album
+    @state[:labels] << album.label
+    @state[:genres] << album.genre
+  end
+
   def quit
     Storage.new('books').save(@state[:books])
     Storage.new('labels').save(@state[:labels])
@@ -53,16 +70,22 @@ class App
     exit
   end
 
+  def options
+    methods = {}
+    methods[1] = method(:list_all_books)
+    methods[2] = method(:list_music_albums)
+    methods[5] = method(:list_genres)
+    methods[6] = method(:list_all_labels)
+    methods[9] = method(:add_book)
+    methods[10] = method(:add_album)
+    methods[13] = method(:quit)
+
+    methods
+  end
+
   def launch_the_option(option)
-    case option
-    when 1
-      list_all_books
-    when 6
-      list_all_labels
-    when 9
-      add_book
-    when 13
-      quit
+    if [*1..13].include? option
+      options[option].call
     else
       puts 'Invalid option!'
     end
