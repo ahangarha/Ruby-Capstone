@@ -56,7 +56,7 @@ class DisplayGenre
       puts('*' * 70)
     else
       genres.each_with_index do |genre, i|
-        puts "#{i + 1}) #{genre.name}"
+        puts "#{i + 1} #{genre.name}"
       end
     end
   end
@@ -69,8 +69,23 @@ class DisplayAuthors
       puts 'No genres available,added genres will be displayed here!'
       puts('*' * 70)
     else
-      authors.each do |author|
-        puts "Name:  #{author.first_name} #{author.last_name}"
+      authors.each_with_index do |author, i|
+        puts "#{i + 1} Name:  #{author.first_name} #{author.last_name}"
+      end
+    end
+  end
+end
+
+class DisplayGames < Display
+  def self.list(games)
+    if games.empty?
+      puts('*' * 70)
+      puts 'No games available, please add some!'
+      puts('*' * 70)
+    else
+      games.each_with_index do |game, i|
+        puts("#{i + 1}) #{game.label.title || 'NOT LABELED'}"\ 
+        " #{game.genre.name || ''} PD:#{game.publish_date}")
       end
     end
   end
