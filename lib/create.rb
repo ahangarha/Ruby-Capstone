@@ -1,3 +1,6 @@
+require_relative './label'
+require_relative './genre'
+
 class Create
   def self.create
     raise NotImplementedError
@@ -35,20 +38,31 @@ class CreateBook < Create
   end
 end
 
-class CreateMusicAlbum < Create
-  require_relative './label'
-  require_relative './genre'
-  require_relative './music_album'
-
+class CreateLabel < Create
   def self.create
     print 'title: '
     title = gets.chomp.strip
     print 'label-color: '
     color = gets.chomp.strip
-    label = Label.new title, color
-    print 'genre: '
+    Label.new title, color
+  end
+end
+
+class CreateGenre < Create
+  def self.create
+    print 'Genre: '
     genre_name = gets.chomp.strip
-    genre = Genre.new genre_name
+    Genre.new genre_name
+  end
+end
+
+class CreateMusicAlbum < Create
+  require_relative './music_album'
+
+  def self.create
+    label = CreateLabel.create
+    genre = CreateGenre.create
+
     print 'Publish Date: '
     publish_date = gets.chomp.strip
     album = MusicAlbum.new publish_date
