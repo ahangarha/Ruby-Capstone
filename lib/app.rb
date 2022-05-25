@@ -43,19 +43,23 @@ class App
     DisplayLabels.list(@state[:labels])
   end
 
-  def add_book
-    new_book = CreateBook.create
-    @state[:books] << new_book
-    @state[:labels] << new_book.label
-    @state[:genres] << new_book.genre
+  def list_all_authors
+    DisplayAuthors.list(@state[:authors])
   end
 
-  def list_music_albums
+   def list_music_albums
     DisplayMusic.list @state[:music]
   end
 
   def list_genres
     DisplayGenre.list @state[:genres]
+  end
+
+  def add_book
+    new_book = CreateBook.create
+    @state[:books] << new_book
+    @state[:labels] << new_book.label
+    @state[:genres] << new_book.genre
   end
 
   def add_album

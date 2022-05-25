@@ -62,7 +62,7 @@ class DisplayGenre
   end
 end
 
-class DisplayAuthor
+class DisplayAuthors
   def self.list(authors)
     if authors.empty?
       puts('*' * 70)

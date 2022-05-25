@@ -23,6 +23,11 @@ class Item
     genre.add_item(self) unless genre.items.include? self
   end
 
+  def author=(author)
+    @author = author
+    author.add_item(self) unless author.items.include? self
+  end
+
   def to_hash
     raise NotImplementedError
   end
