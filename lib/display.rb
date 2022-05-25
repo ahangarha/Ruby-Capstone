@@ -61,3 +61,17 @@ class DisplayGenre
     end
   end
 end
+
+class DisplayAuthor
+  def self.list(authors)
+    if authors.empty?
+      puts('*' * 70)
+      puts 'No genres available,added genres will be displayed here!'
+      puts('*' * 70)
+    else
+      authors.each_with_index do |author, i|
+        puts "Name:  #{author.first_name} #{author.last_name}"
+      end
+    end
+  end
+end
