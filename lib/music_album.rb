@@ -1,7 +1,7 @@
 class MusicAlbum < Item
   attr_accessor :on_spotify
 
-  def initialize(publish_date, on_spotify: false, archived: false, id: nil)
+  def initialize(publish_date, on_spotify: false, archived: false, id: rand(1..10_000))
     super(publish_date, archived: archived, id: id)
     @on_spotify = on_spotify
   end
