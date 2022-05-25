@@ -36,6 +36,8 @@ class App
     @state[:books] = CreateBook.create_from(Storage.new('books').load)
     @state[:genres] = CreateGenre.create_from(Storage.new('genres').load)
     @state[:music] = CreateMusicAlbum.create_from(Storage.new('music').load, @state)
+    @state[:labels] = CreateLabel.create_from(Storage.new('labels').load)
+    @state[:books] = CreateBook.create_from(Storage.new('books').load, @state)
   end
 
   def list_all_books
@@ -47,7 +49,10 @@ class App
   end
 
   def add_book
-    @state[:books] << CreateBook.create
+    new_book = CreateBook.create
+    @state[:books] << new_book
+    @state[:labels] << new_book.label
+    @state[:genres] << new_book.genre
   end
 
   def list_music_albums
@@ -59,10 +64,10 @@ class App
   end
 
   def add_album
-    data = CreateMusicAlbum.create
-    @state[:music] << data[:album]
-    @state[:labels] << data[:label]
-    @state[:genres] << data[:genre]
+    album = CreateMusicAlbum.create
+    @state[:music] << album
+    @state[:labels] << album.label
+    @state[:genres] << album.genre
   end
 
   def quit
