@@ -56,5 +56,4 @@ build-iPhoneSimulator/
 # .rubocop-https?--*
 
 # data files
-books.json
-labels.json
+*.json
