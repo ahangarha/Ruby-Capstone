@@ -58,10 +58,10 @@ class App
   end
 
   def add_album
-    data = CreateMusicAlbum.create
-    @state[:music] << data[:album]
-    @state[:labels] << data[:label]
-    @state[:genres] << data[:genre]
+    album = CreateMusicAlbum.create
+    @state[:music] << album
+    @state[:labels] << album.label
+    @state[:genres] << album.genre
   end
 
   def quit

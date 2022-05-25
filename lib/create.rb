@@ -55,10 +55,7 @@ class CreateMusicAlbum < Create
     album.genre = genre
     album.label = label
     puts "#{'-' * 20}Book has been created 🎉#{'-' * 20}"
-    {
-      genre: genre,
-      album: album,
-      label: label
-    }
+
+    album
   end
 end
