@@ -111,7 +111,7 @@ class CreateMusicAlbum < Create
       genre = state[:genres].find { |l| l.id == json['genre'] }
       album.genre = genre || Genre.new('default')
       album.label = label
-      
+
       album
     end
   end
