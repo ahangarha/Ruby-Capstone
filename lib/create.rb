@@ -18,6 +18,7 @@ class CreateBook < Create
   def self.create
     label = CreateLabel.create
     genre = CreateGenre.create
+    author = CreateAuthor.create
 
     print 'Publisher: '
     publisher = gets.chomp.strip
@@ -29,6 +30,7 @@ class CreateBook < Create
     book = Book.new(publisher, cover_state, publish_date)
     book.label = label
     book.genre = genre
+    book.author = author
 
     book
   end
