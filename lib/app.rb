@@ -10,7 +10,7 @@ class App
       music: [],
       genres: [],
       authors: [],
-      games: [],
+      games: []
     }
 
     load_all_state
@@ -38,7 +38,6 @@ class App
     @state[:books] = CreateBook.create_from(Storage.new('books').load, @state)
     @state[:authors] = CreateAuthor.create_from(Storage.new('authors').load, @state)
     @state[:games] = CreateGame.create_from(Storage.new('games').load, @state)
-    
   end
 
   def list_all_books

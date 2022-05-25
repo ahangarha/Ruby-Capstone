@@ -85,8 +85,8 @@ class DisplayGames < Display
     else
       games.each_with_index do |game, i|
         puts("#{i + 1}) #{game.label.title || 'NOT LABELED'}"\ 
-        " #{game.genre.name || ''} PD:#{game.publish_date}" \
-        "#{game.multiplayer} #{game.last_played_at}")
+             " #{game.genre.name || ''} PD:#{game.publish_date}"\
+             " #{game.multiplayer} #{game.last_played_at}")
       end
     end
   end
