@@ -1,5 +1,6 @@
 require_relative './display'
 require_relative './create'
+require_relative './storage'
 
 class App
   def initialize
@@ -8,7 +9,11 @@ class App
       labels: []
     }
 
-    @list_options = [
+    load_all_state
+  end
+
+  def list_options
+    [
       'List all books',
       'List all music albums',
       'List all movies',
@@ -25,6 +30,10 @@ class App
     ]
   end
 
+  def load_all_state
+    @state[:books] = CreateBook.create_from(Storage.new('books').load)
+  end
+
   def list_all_books
     DisplayBooks.list(@state[:books])
   end
@@ -37,6 +46,13 @@ class App
     @state[:books] << CreateBook.create
   end
 
+  def quit
+    Storage.new('books').save(@state[:books])
+    Storage.new('labels').save(@state[:labels])
+
+    exit
+  end
+
   def launch_the_option(option)
     case option
     when 1
@@ -46,7 +62,7 @@ class App
     when 9
       add_book
     when 13
-      exit
+      quit
     else
       puts 'Invalid option!'
     end
@@ -54,7 +70,7 @@ class App
 
   def home
     puts 'Please Select an option menu'
-    @list_options.each_with_index { |option, i| puts "#{i + 1}-#{option}" }
+    list_options.each_with_index { |option, i| puts "#{i + 1}-#{option}" }
     chosen_option = gets.chomp.to_i
     launch_the_option(chosen_option)
     home

@@ -4,24 +4,25 @@ class Display
   end
 end
 
-class DisplayBooks
+class DisplayBooks < Display
   def self.list(books)
     if books.empty?
       puts 'No book available!'
     else
       books.each do |book|
+        id = book.id
         label = book.label || 'NO LABEL!'
         archived_status = book.archived ? '[ARCHIVED]' : ''
-        puts "#{label}\tpublished at #{book.publish_date}\t#{archived_status}"
+        puts "#{id}\t#{label}\tpublished at #{book.publish_date}\t#{archived_status}"
       end
     end
   end
 end
 
-class DisplayLabels
+class DisplayLabels < Display
   def self.list(labels)
     if labels.empty?
-      puts 'No book available!'
+      puts 'No label available!'
     else
       labels.each do |label|
         title = label.title || 'NO TITLE!'
