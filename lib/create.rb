@@ -15,6 +15,9 @@ class CreateBook < Create
   require_relative './book'
 
   def self.create
+    label = CreateLabel.create
+    genre = CreateGenre.create
+
     print 'Publisher: '
     publisher = gets.chomp.strip
     print 'Cover State: '
@@ -22,18 +25,26 @@ class CreateBook < Create
     print 'Publish Date: '
     publish_date = gets.chomp.strip
 
-    Book.new(publisher, cover_state, publish_date)
+    book = Book.new(publisher, cover_state, publish_date)
+    book.label = label
+    book.genre = genre
+
+    book
   end
 
-  def self.create_from(books)
+  def self.create_from(books, state)
     books.map do |book|
-      Book.new(
+      new_book = Book.new(
         book['publisher'],
         book['cover_state'],
         book['publish_date'],
         archived: book['archived'],
         id: book['id']
       )
+      the_label = state[:labels].find { |l| l.id == book['label'] }
+      new_book.label = the_label
+
+      new_book
     end
   end
 end
@@ -45,6 +56,16 @@ class CreateLabel < Create
     print 'label-color: '
     color = gets.chomp.strip
     Label.new title, color
+  end
+
+  def self.create_from(labels)
+    labels.map do |label|
+      Label.new(
+        label['title'],
+        label['color'],
+        id: label['id']
+      )
+    end
   end
 end
 
