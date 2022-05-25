@@ -69,7 +69,7 @@ class DisplayAuthors
       puts 'No genres available,added genres will be displayed here!'
       puts('*' * 70)
     else
-      authors.each_with_index do |author|
+      authors.each do |author|
         puts "Name:  #{author.first_name} #{author.last_name}"
       end
     end
