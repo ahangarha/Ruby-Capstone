@@ -1,5 +1,6 @@
 require_relative './label'
 require_relative './genre'
+require_relative './author.rb'
 
 class Create
   def self.create
@@ -92,5 +93,25 @@ class CreateMusicAlbum < Create
     puts "#{'-' * 20}Book has been created 🎉#{'-' * 20}"
 
     album
+  end
+end
+
+class CreateAuthor < Create
+  def self.create
+    print 'First Name: '
+    first_name = gets.chomp.strip
+    print 'Last Name: '
+    last_name = gets.chomp.strip
+    Author.new first_name, last_name
+  end
+
+  def self.create_from(authors)
+    authors.map do |author|
+      Author.new(
+        author['first_name'],
+        author['last_name'],
+        id: author['id']
+      )
+    end
   end
 end
