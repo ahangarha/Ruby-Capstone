@@ -69,6 +69,7 @@ class App
     @state[:books] << new_book
     @state[:labels] << new_book.label
     @state[:genres] << new_book.genre
+    @state[:authors] << new_book.author
   end
 
   def add_album
@@ -76,6 +77,7 @@ class App
     @state[:music] << album
     @state[:labels] << album.label
     @state[:genres] << album.genre
+    @state[:authors] << album.author
   end
 
   def add_game
