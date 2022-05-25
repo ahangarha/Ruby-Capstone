@@ -98,10 +98,13 @@ class App
     {
       1 => method(:list_all_books),
       2 => method(:list_music_albums),
+      3 => method(:list_all_games),
       4 => method(:list_genres),
       5 => method(:list_all_labels),
+      6 => method(:list_all_authors),
       7 => method(:add_book),
       8 => method(:add_album),
+      9 => method(:add_game),
       10 => method(:quit)
     }
   end
