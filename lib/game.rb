@@ -19,6 +19,9 @@ class Game < Item
       'archived' => @archived,
       'publish_date' => @publish_date,
     }
+    hash['label'] = @label.id unless @label.nil?
+    hash['author'] = @author.id unless @author.nil?
+    hash['genre'] = @genre.id unless @genre.nil?
   end
 
   private

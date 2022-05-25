@@ -9,7 +9,8 @@ class App
       labels: [],
       music: [],
       genres: [],
-      authors: []
+      authors: [],
+      games: [],
     }
 
     load_all_state
@@ -59,7 +60,7 @@ class App
   end
 
   def list_all_games
-    
+    DisplayGames.list @state[:games]
   end
 
   def add_book
@@ -74,6 +75,14 @@ class App
     @state[:music] << album
     @state[:labels] << album.label
     @state[:genres] << album.genre
+  end
+
+  def add_game
+    game = CreateGame.create
+    @state[:games] << game
+    @state[:labels] << game.label
+    @state[:genres] << game.genre
+    @state[:author] << game.author
   end
 
   def quit
