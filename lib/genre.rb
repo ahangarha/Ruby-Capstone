@@ -1,12 +1,12 @@
 class Genre
   attr_accessor :name
-  attr_reader :items
+  attr_reader :items, :id
 
-  def initialize(name, id = rand(1..10_000), items = [])
+  def initialize(name, id: rand(1..10_000))
     super()
     @id = id
     @name = name
-    @items = items
+    @items = []
   end
 
   def add_item(item)
@@ -22,6 +22,9 @@ class Genre
   end
 
   def self.from_json(json)
-    Genre.new(json['name'], id: json['id'])
+    Genre.new(
+      json['name'],
+      id: json['id']
+    )
   end
 end

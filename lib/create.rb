@@ -75,6 +75,10 @@ class CreateGenre < Create
     genre_name = gets.chomp.strip
     Genre.new genre_name
   end
+
+  def self.create_from(genres)
+    genres.map { |json| Genre.from_json json }
+  end
 end
 
 class CreateMusicAlbum < Create
@@ -94,14 +98,15 @@ class CreateMusicAlbum < Create
     album
   end
 
-  def self.create_from(music, _state)
-    music.map { |album| MusicAlbum.from_json album }
-  end
-end
+  def self.create_from(music, state)
+    music.map do |json|
+      album = MusicAlbum.from_json json
+      label = state[:labels].find { |l| l.id == json['label'] }
+      genre = state[:genres].find { |l| l.id == json['genre'] }
+      album.genre = genre || Genre.new('default')
+      album.label = label
 
-class CreateGenre < Create
-  require_relative './genre'
-  def self.create_from(genres)
-    genres.map { |genre| Genre.from_json genre }
+      album
+    end
   end
 end

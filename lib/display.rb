@@ -56,7 +56,7 @@ class DisplayGenre
       puts('*' * 70)
     else
       genres.each_with_index do |genre, i|
-        puts "#{i + 1}) #{genre.name}  items: #{genre.items.length}"
+        puts "#{i + 1}) #{genre.name}"
       end
     end
   end

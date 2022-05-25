@@ -33,10 +33,9 @@ class App
   end
 
   def load_all_state
-    @state[:books] = CreateBook.create_from(Storage.new('books').load)
+    @state[:labels] = CreateLabel.create_from(Storage.new('labels').load)
     @state[:genres] = CreateGenre.create_from(Storage.new('genres').load)
     @state[:music] = CreateMusicAlbum.create_from(Storage.new('music').load, @state)
-    @state[:labels] = CreateLabel.create_from(Storage.new('labels').load)
     @state[:books] = CreateBook.create_from(Storage.new('books').load, @state)
   end
 
