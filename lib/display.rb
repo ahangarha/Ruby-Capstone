@@ -4,7 +4,7 @@ class Display
   end
 end
 
-class DisplayBooks
+class DisplayBooks < Display
   def self.list(books)
     if books.empty?
       puts 'No book available!'
@@ -19,10 +19,10 @@ class DisplayBooks
   end
 end
 
-class DisplayLabels
+class DisplayLabels < Display
   def self.list(labels)
     if labels.empty?
-      puts 'No book available!'
+      puts 'No label available!'
     else
       labels.each do |label|
         title = label.title || 'NO TITLE!'
