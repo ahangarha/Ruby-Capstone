@@ -25,8 +25,9 @@ class Game < Item
   end
 
   private
+
   def can_be_archived?
-    difference = 2022 - @last_played_at
+    difference = Time.now.year - @last_played_at
     super && (difference > 2)
   end
 end
