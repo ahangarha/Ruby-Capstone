@@ -80,16 +80,15 @@ class App
   end
 
   def options
-    methods = {}
-    methods[1] = method(:list_all_books)
-    methods[2] = method(:list_music_albums)
-    methods[5] = method(:list_genres)
-    methods[6] = method(:list_all_labels)
-    methods[9] = method(:add_book)
-    methods[10] = method(:add_album)
-    methods[13] = method(:quit)
-
-    methods
+    {
+      1 => method(:list_all_books),
+      2 => method(:list_music_albums),
+      4 => method(:list_genres),
+      5 => method(:list_all_labels),
+      7 => method(:add_book),
+      8 => method(:add_album),
+      10 => method(:quit)
+    }
   end
 
   def launch_the_option(option)
