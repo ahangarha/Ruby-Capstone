@@ -1,3 +1,6 @@
+require_relative './label'
+require_relative './genre'
+
 class Create
   def self.create
     raise NotImplementedError
@@ -12,6 +15,9 @@ class CreateBook < Create
   require_relative './book'
 
   def self.create
+    label = CreateLabel.create
+    genre = CreateGenre.create
+
     print 'Publisher: '
     publisher = gets.chomp.strip
     print 'Cover State: '
@@ -19,36 +25,65 @@ class CreateBook < Create
     print 'Publish Date: '
     publish_date = gets.chomp.strip
 
-    Book.new(publisher, cover_state, publish_date)
+    book = Book.new(publisher, cover_state, publish_date)
+    book.label = label
+    book.genre = genre
+
+    book
   end
 
-  def self.create_from(books)
+  def self.create_from(books, state)
     books.map do |book|
-      Book.new(
+      new_book = Book.new(
         book['publisher'],
         book['cover_state'],
         book['publish_date'],
         archived: book['archived'],
         id: book['id']
       )
+      the_label = state[:labels].find { |l| l.id == book['label'] }
+      new_book.label = the_label
+
+      new_book
     end
   end
 end
 
-class CreateMusicAlbum < Create
-  require_relative './label'
-  require_relative './genre'
-  require_relative './music_album'
-
+class CreateLabel < Create
   def self.create
     print 'title: '
     title = gets.chomp.strip
     print 'label-color: '
     color = gets.chomp.strip
-    label = Label.new title, color
-    print 'genre: '
+    Label.new title, color
+  end
+
+  def self.create_from(labels)
+    labels.map do |label|
+      Label.new(
+        label['title'],
+        label['color'],
+        id: label['id']
+      )
+    end
+  end
+end
+
+class CreateGenre < Create
+  def self.create
+    print 'Genre: '
     genre_name = gets.chomp.strip
-    genre = Genre.new genre_name
+    Genre.new genre_name
+  end
+end
+
+class CreateMusicAlbum < Create
+  require_relative './music_album'
+
+  def self.create
+    label = CreateLabel.create
+    genre = CreateGenre.create
+
     print 'Publish Date: '
     publish_date = gets.chomp.strip
     album = MusicAlbum.new publish_date
