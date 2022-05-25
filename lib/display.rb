@@ -66,7 +66,7 @@ class DisplayAuthors
   def self.list(authors)
     if authors.empty?
       puts('*' * 70)
-      puts 'No genres available,added genres will be displayed here!'
+      puts 'No author available, added authors will be displayed here!'
       puts('*' * 70)
     else
       authors.each_with_index do |author, i|
