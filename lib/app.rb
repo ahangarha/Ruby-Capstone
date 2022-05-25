@@ -9,7 +9,11 @@ class App
       labels: []
     }
 
-    @list_options = [
+    load_all_state
+  end
+
+  def list_options
+    [
       'List all books',
       'List all music albums',
       'List all movies',
@@ -24,7 +28,6 @@ class App
       'Add a game',
       'Exit'
     ]
-    load_all_state
   end
 
   def load_all_state
@@ -67,7 +70,7 @@ class App
 
   def home
     puts 'Please Select an option menu'
-    @list_options.each_with_index { |option, i| puts "#{i + 1}-#{option}" }
+    list_options.each_with_index { |option, i| puts "#{i + 1}-#{option}" }
     chosen_option = gets.chomp.to_i
     launch_the_option(chosen_option)
     home
