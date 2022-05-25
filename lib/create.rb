@@ -1,6 +1,6 @@
 require_relative './label'
 require_relative './genre'
-require_relative './author.rb'
+require_relative './author'
 
 class Create
   def self.create
@@ -46,6 +46,9 @@ class CreateBook < Create
       )
       the_label = state[:labels].find { |l| l.id == book['label'] }
       new_book.label = the_label
+
+      the_author = state[:author].find { |a| a.id == book['author'] }
+      new_book.author = the_author
 
       new_book
     end

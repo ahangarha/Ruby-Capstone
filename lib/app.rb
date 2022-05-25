@@ -9,7 +9,7 @@ class App
       labels: [],
       music: [],
       genres: [],
-      authors: [],
+      authors: []
     }
 
     load_all_state
@@ -47,7 +47,7 @@ class App
     DisplayAuthors.list(@state[:authors])
   end
 
-   def list_music_albums
+  def list_music_albums
     DisplayMusic.list @state[:music]
   end
 
