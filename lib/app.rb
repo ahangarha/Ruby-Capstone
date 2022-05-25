@@ -9,7 +9,8 @@ class App
       labels: [],
       music: [],
       genres: [],
-      authors: []
+      authors: [],
+      games: []
     }
 
     load_all_state
@@ -33,8 +34,10 @@ class App
   def load_all_state
     @state[:labels] = CreateLabel.create_from(Storage.new('labels').load)
     @state[:genres] = CreateGenre.create_from(Storage.new('genres').load)
+    @state[:authors] = CreateAuthor.create_from(Storage.new('authors').load)
     @state[:music] = CreateMusicAlbum.create_from(Storage.new('music').load, @state)
     @state[:books] = CreateBook.create_from(Storage.new('books').load, @state)
+    @state[:games] = CreateGame.create_from(Storage.new('games').load, @state)
   end
 
   def list_all_books
@@ -57,6 +60,10 @@ class App
     DisplayGenre.list @state[:genres]
   end
 
+  def list_all_games
+    DisplayGames.list @state[:games]
+  end
+
   def add_book
     new_book = CreateBook.create
     @state[:books] << new_book
@@ -69,6 +76,14 @@ class App
     @state[:music] << album
     @state[:labels] << album.label
     @state[:genres] << album.genre
+  end
+
+  def add_game
+    game = CreateGame.create
+    @state[:games] << game
+    @state[:labels] << game.label
+    @state[:genres] << game.genre
+    @state[:author] << game.author
   end
 
   def quit
