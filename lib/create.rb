@@ -47,7 +47,7 @@ class CreateBook < Create
       the_label = state[:labels].find { |l| l.id == book['label'] }
       new_book.label = the_label
 
-      the_author = state[:author].find { |a| a.id == book['author'] }
+      the_author = state[:authors].find { |a| a.id == book['author'] }
       new_book.author = the_author
 
       new_book
