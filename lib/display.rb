@@ -84,9 +84,9 @@ class DisplayGames < Display
       puts('*' * 70)
     else
       games.each_with_index do |game, i|
-        puts"#{i + 1} #{ game.label.title || 'NOT LABELED'}"
-        puts"#{ game.genre.name || ''} PD:#{ game.publish_date }"
-        puts"#{ game.multiplayer } #{ game.last_played_at }"
+        puts"#{i + 1} #{game.label.title || 'NOT LABELED'}"
+        puts"#{game.genre.name || ''} PD:#{game.publish_date}"
+        puts"#{game.multiplayer } #{game.last_played_at}"
       end
     end
   end
