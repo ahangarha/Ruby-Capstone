@@ -13,11 +13,9 @@ CREATE TABLE books(
     cover_state VARCHAR(255),
     genre_id INT NULL,
     author_id INT NULL,
-    source_id INT NULL,
     label_id INT NULL,
     FOREIGN KEY (genre_id) REFERENCES genres(id),
     FOREIGN KEY (author_id) REFERENCES authors(id),
-    FOREIGN KEY (source_id) REFERENCES sources(id),
     FOREIGN KEY (label_id) REFERENCES labels(id)
 );
 
@@ -26,11 +24,10 @@ CREATE TABLE books(
 -- CREATE genre TABLE
 
 CREATE TABLE genres(
-   id INT GENERATED ALWAYS AS IDENTITY,
-   name VARCHAR(255),
-   PRIMARY KEY (id)
+    id INT GENERATED ALWAYS AS IDENTITY,
+    name VARCHAR(255),
+    PRIMARY KEY (id)
 );
-
 
 -- CREATE music_album TABLE
 
@@ -42,10 +39,8 @@ CREATE TABLE music_album(
     genre_id INT NULL,
     label_id INT NULL,
     author_id INT NULL,
-    source_id INT NULL,
     FOREIGN KEY (genre_id) REFERENCES genres(id),
     FOREIGN KEY (author_id) REFERENCES authors(id),
-    FOREIGN KEY (source_id) REFERENCES sources(id),
     FOREIGN KEY (label_id) REFERENCES labels(id),
     PRIMARY KEY (id)
 );
