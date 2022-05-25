@@ -71,22 +71,22 @@ class App
     exit
   end
 
+  def options
+    methods = {}
+    methods[1] = method(:list_all_books)
+    methods[2] = method(:list_music_albums)
+    methods[5] = method(:list_genres)
+    methods[6] = method(:list_all_labels)
+    methods[9] = method(:add_book)
+    methods[10] = method(:add_album)
+    methods[13] = method(:quit)
+
+    methods
+  end
+
   def launch_the_option(option)
-    case option
-    when 1
-      list_all_books
-    when 2
-      list_music_albums
-    when 5
-      list_genres
-    when 6
-      list_all_labels
-    when 9
-      add_book
-    when 10
-      add_album
-    when 13
-      quit
+    if [*1..13].include? option
+      options[option].call
     else
       puts 'Invalid option!'
     end
