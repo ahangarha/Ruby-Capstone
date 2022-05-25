@@ -144,3 +144,49 @@ class CreateAuthor < Create
     end
   end
 end
+
+class CreateGame < Create
+  require_relative './game'
+
+  def self.create
+    label = CreateLabel.create
+    genre = CreateGenre.create
+    author = CreateAuthor.create
+
+    print 'Multiplayer: Yes or No '
+    multiplayer = gets.chomp.strip
+    print 'Last played at: '
+    last_played_at = gets.chomp.strip
+    print 'Publish Date: '
+    publish_date = gets.chomp.strip
+
+    game = Game.new(multiplayer, last_played_at, publish_date)
+    game.label = label
+    game.genre = genre
+    game.author = author
+
+    game
+  end
+
+  def self.create_from(games, state)
+    games.map do |game|
+      new_game = Game.new(
+        game['multiplayer'],
+        game['last_played_at'],
+        game['publish_date'],
+        archived: game['archived'],
+        id: game['id']
+      )
+      the_label = state[:labels].find { |l| l.id == game['label'] }
+      new_game.label = the_label
+
+      the_author = state[:authors].find { |a| a.id == game['author'] }
+      new_game.author = the_author
+
+      the_genre = state[:genres].find { |g| g.id == game['genre'] }
+      new_game.genre = the_genre
+
+      new_game
+    end
+  end
+end
