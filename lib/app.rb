@@ -9,7 +9,6 @@ class App
       labels: [],
       music: [],
       genres: []
-
     }
 
     load_all_state
