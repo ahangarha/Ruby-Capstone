@@ -61,4 +61,15 @@ class CreateMusicAlbum < Create
       label: label
     }
   end
+
+  def self.create_from(music,state)
+    music.map { |album| MusicAlbum.from_json album }
+  end
+end
+
+class CreateGenre < Create
+  require_relative './genre'
+  def self.create_from(genres)
+    genres.map{|genre| Genre.from_json genre}
+  end
 end
