@@ -14,16 +14,22 @@ class Item
   end
 
   def label=(label)
+    return if label.nil?
+
     @label = label
     label.add_item(self) unless label.items.include? self
   end
 
   def genre=(genre)
+    return if genre.nil?
+
     @genre = genre
     genre.add_item(self) unless genre.items.include? self
   end
 
   def author=(author)
+    return if author.nil?
+
     @author = author
     author.add_item(self) unless author.items.include? self
   end

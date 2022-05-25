@@ -28,9 +28,9 @@ class CreateBook < Create
     publish_date = gets.chomp.strip
 
     book = Book.new(publisher, cover_state, publish_date)
-    book.label = label unless label.nil?
-    book.genre = genre unless genre.nil?
-    book.author = author unless author.nil?
+    book.label = label
+    book.genre = genre
+    book.author = author
 
     book
   end
@@ -45,13 +45,13 @@ class CreateBook < Create
         id: book['id']
       )
       the_label = state[:labels].find { |l| l.id == book['label'] }
-      new_book.label = the_label unless the_label.nil?
+      new_book.label = the_label
 
       the_author = state[:authors].find { |a| a.id == book['author'] }
-      new_book.author = the_author unless the_author.nil?
+      new_book.author = the_author
 
       the_genre = state[:genres].find { |g| g.id == book['genre'] }
-      new_book.genre = the_genre unless the_genre.nil?
+      new_book.genre = the_genre
 
       new_book
     end
@@ -101,9 +101,9 @@ class CreateMusicAlbum < Create
     print 'Publish Date: '
     publish_date = gets.chomp.strip
     album = MusicAlbum.new publish_date
-    album.genre = genre unless genre.nil?
-    album.label = label unless label.nil?
-    album.author = author unless author.nil?
+    album.genre = genre
+    album.label = label
+    album.author = author
 
     puts "#{'-' * 20}Book has been created 🎉#{'-' * 20}"
 
@@ -117,8 +117,8 @@ class CreateMusicAlbum < Create
       genre = state[:genres].find { |l| l.id == json['genre'] }
       author = state[:authors].find { |l| l.id == json['author'] }
       album.genre = genre || Genre.new('default')
-      album.label = label unless label.nil?
-      album.author = author unless author.nil?
+      album.label = label
+      album.author = author
 
       album
     end
