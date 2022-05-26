@@ -16,7 +16,7 @@ describe Game do
   context 'can_be_archived? method' do
     it 'returns true if parent return true' do
       multiplayer = false
-      last_played_at = 2021
+      last_played_at = Time.now.year - 1
       publish_date = 2020
 
       the_game = Game.new(multiplayer, last_played_at, publish_date)
@@ -25,7 +25,7 @@ describe Game do
     end
     it 'returns true if parent return true' do
       multiplayer = true
-      last_played_at = 2017
+      last_played_at = Time.now.year - 5
       publish_date = 2015
 
       the_game = Game.new(multiplayer, last_played_at, publish_date)
@@ -34,7 +34,7 @@ describe Game do
     end
     it 'returns true if parent return true' do
       multiplayer = true
-      last_played_at = 2017
+      last_played_at = Time.now.year - 5
       publish_date = 2010
 
       the_game = Game.new(multiplayer, last_played_at, publish_date)
