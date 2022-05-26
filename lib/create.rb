@@ -24,7 +24,7 @@ class CreateBook < Create
     publisher = gets.chomp.strip
     print 'Cover State: '
     cover_state = gets.chomp.strip
-    print 'Publish Date: '
+    print 'Publish Year: '
     publish_date = gets.chomp.strip
 
     book = Book.new(publisher, cover_state, publish_date)
@@ -60,9 +60,9 @@ end
 
 class CreateLabel < Create
   def self.create
-    print 'title: '
+    print 'Label Title: '
     title = gets.chomp.strip
-    print 'label-color: '
+    print 'label Color: '
     color = gets.chomp.strip
     Label.new title, color
   end
@@ -98,7 +98,7 @@ class CreateMusicAlbum < Create
     genre = CreateGenre.create
     author = CreateAuthor.create
 
-    print 'Publish Date: '
+    print 'Publish Year: '
     publish_date = gets.chomp.strip
     album = MusicAlbum.new publish_date
     album.genre = genre
@@ -127,6 +127,7 @@ end
 
 class CreateAuthor < Create
   def self.create
+    puts 'Author detail:'
     print 'First Name: '
     first_name = gets.chomp.strip
     print 'Last Name: '
@@ -155,9 +156,9 @@ class CreateGame < Create
 
     print 'Multiplayer: Yes or No '
     multiplayer = gets.chomp.strip
-    print 'Last played at: '
+    print 'Last played at (year): '
     last_played_at = gets.chomp.strip
-    print 'Publish Date: '
+    print 'Publish Year: '
     publish_date = gets.chomp.strip
 
     game = Game.new(multiplayer, last_played_at, publish_date)
