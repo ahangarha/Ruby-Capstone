@@ -45,4 +45,25 @@ CREATE TABLE music_album(
     PRIMARY KEY (id)
 );
 
+CREATE TABLE authors(
+        id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+        first_name TEXT,
+        last_name TEXT
+);
+
+CREATE TABLE games(
+        id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+        multiplayer BOOLEAN,
+        last_played_at DATE,
+        publish_date DATE,
+        archived BOOLEAN,
+        genre_id INTEGER,
+        author_id INTEGER,
+        label_id INTEGER,
+        FOREIGN KEY(genre_id) REFERENCES genres(id),
+        FOREIGN KEY(author_id) REFERENCES authors(id),
+        FOREIGN KEY(label_id) REFERENCES labels(id)
+);
+
+
 -- *************************************
