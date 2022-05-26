@@ -93,6 +93,8 @@ class App
     Storage.new('labels').save(@state[:labels])
     Storage.new('genres').save(@state[:genres])
     Storage.new('music').save(@state[:music])
+    Storage.new('authors').save(@state[:authors])
+    Storage.new('games').save(@state[:games])
     exit
   end
 
