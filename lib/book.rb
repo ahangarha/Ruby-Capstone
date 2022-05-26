@@ -20,6 +20,8 @@ class Book < Item
     }
 
     hash['label'] = @label.id unless @label.nil?
+    hash['genre'] = @genre.id unless @genre.nil?
+    hash['author'] = @author.id unless @author.nil?
 
     hash
   end

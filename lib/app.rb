@@ -69,6 +69,7 @@ class App
     @state[:books] << new_book
     @state[:labels] << new_book.label
     @state[:genres] << new_book.genre
+    @state[:authors] << new_book.author
   end
 
   def add_album
@@ -76,6 +77,7 @@ class App
     @state[:music] << album
     @state[:labels] << album.label
     @state[:genres] << album.genre
+    @state[:authors] << album.author
   end
 
   def add_game
@@ -83,7 +85,7 @@ class App
     @state[:games] << game
     @state[:labels] << game.label
     @state[:genres] << game.genre
-    @state[:author] << game.author
+    @state[:authors] << game.author
   end
 
   def quit
@@ -95,16 +97,18 @@ class App
   end
 
   def options
-    methods = {}
-    methods[1] = method(:list_all_books)
-    methods[2] = method(:list_music_albums)
-    methods[5] = method(:list_genres)
-    methods[6] = method(:list_all_labels)
-    methods[9] = method(:add_book)
-    methods[10] = method(:add_album)
-    methods[13] = method(:quit)
-
-    methods
+    {
+      1 => method(:list_all_books),
+      2 => method(:list_music_albums),
+      3 => method(:list_all_games),
+      4 => method(:list_genres),
+      5 => method(:list_all_labels),
+      6 => method(:list_all_authors),
+      7 => method(:add_book),
+      8 => method(:add_album),
+      9 => method(:add_game),
+      10 => method(:quit)
+    }
   end
 
   def launch_the_option(option)

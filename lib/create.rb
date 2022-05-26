@@ -47,8 +47,11 @@ class CreateBook < Create
       the_label = state[:labels].find { |l| l.id == book['label'] }
       new_book.label = the_label
 
-      the_author = state[:author].find { |a| a.id == book['author'] }
+      the_author = state[:authors].find { |a| a.id == book['author'] }
       new_book.author = the_author
+
+      the_genre = state[:genres].find { |g| g.id == book['genre'] }
+      new_book.genre = the_genre
 
       new_book
     end
@@ -93,12 +96,15 @@ class CreateMusicAlbum < Create
   def self.create
     label = CreateLabel.create
     genre = CreateGenre.create
+    author = CreateAuthor.create
 
     print 'Publish Date: '
     publish_date = gets.chomp.strip
     album = MusicAlbum.new publish_date
     album.genre = genre
     album.label = label
+    album.author = author
+
     puts "#{'-' * 20}Book has been created 🎉#{'-' * 20}"
 
     album
@@ -109,8 +115,10 @@ class CreateMusicAlbum < Create
       album = MusicAlbum.from_json json
       label = state[:labels].find { |l| l.id == json['label'] }
       genre = state[:genres].find { |l| l.id == json['genre'] }
+      author = state[:authors].find { |l| l.id == json['author'] }
       album.genre = genre || Genre.new('default')
       album.label = label
+      album.author = author
 
       album
     end

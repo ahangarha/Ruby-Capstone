@@ -7,7 +7,7 @@ class MusicAlbum < Item
   end
 
   def to_hash
-    {
+    hash = {
       'class' => 'MusicAlbum',
       'id' => @id,
       'publish_date' => @publish_date,
@@ -16,6 +16,12 @@ class MusicAlbum < Item
       'label' => @label.id,
       'on_spotify' => @on_spotify
     }
+
+    hash['label'] = @label.id unless @label.nil?
+    hash['ganre'] = @ganre.id unless @ganre.nil?
+    hash['author'] = @author.id unless @author.nil?
+
+    hash
   end
 
   def self.from_json(json)
