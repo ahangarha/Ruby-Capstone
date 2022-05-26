@@ -5,6 +5,18 @@ CREATE TABLE labels(
     PRIMARY KEY (id)
 );
 
+CREATE TABLE authors(
+        id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+        first_name TEXT,
+        last_name TEXT
+);
+
+CREATE TABLE genres(
+    id INT GENERATED ALWAYS AS IDENTITY,
+    name VARCHAR(255),
+    PRIMARY KEY (id)
+);
+
 CREATE TABLE books(
     id INT GENERATED ALWAYS AS IDENTITY,
     publish_data DATE,
@@ -20,15 +32,6 @@ CREATE TABLE books(
 );
 
 -- *************************************
-
--- CREATE genre TABLE
-
-CREATE TABLE genres(
-    id INT GENERATED ALWAYS AS IDENTITY,
-    name VARCHAR(255),
-    PRIMARY KEY (id)
-);
-
 -- CREATE music_album TABLE
 
 CREATE TABLE music_album(
@@ -45,12 +48,6 @@ CREATE TABLE music_album(
     PRIMARY KEY (id)
 );
 
-CREATE TABLE authors(
-        id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-        first_name TEXT,
-        last_name TEXT
-);
-
 CREATE TABLE games(
         id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
         multiplayer BOOLEAN,
@@ -64,6 +61,4 @@ CREATE TABLE games(
         FOREIGN KEY(author_id) REFERENCES authors(id),
         FOREIGN KEY(label_id) REFERENCES labels(id)
 );
-
-
 -- *************************************
