@@ -28,6 +28,6 @@ class Game < Item
 
   def can_be_archived?
     difference = Time.now.year - @last_played_at
-    super && (difference > 2)
+    super && difference > 2
   end
 end

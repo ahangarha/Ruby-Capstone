@@ -23,5 +23,23 @@ describe Game do
       actual = the_game.send(:can_be_archived?)
       expect(actual).to be_falsey
     end
+    it 'returns true if parent return true' do
+      multiplayer = true
+      last_played_at = 2017
+      publish_date = 2015
+
+      the_game = Game.new(multiplayer, last_played_at, publish_date)
+      actual = the_game.send(:can_be_archived?)
+      expect(actual).to be_falsey
+    end
+    it 'returns true if parent return true' do
+      multiplayer = true
+      last_played_at = 2017
+      publish_date = 2010
+
+      the_game = Game.new(multiplayer, last_played_at, publish_date)
+      actual = the_game.send(:can_be_archived?)
+      expect(actual).to be_truthy
+    end
   end
 end
