@@ -105,7 +105,7 @@ class CreateMusicAlbum < Create
     album.label = label
     album.author = author
 
-    puts "#{'-' * 20}Book has been created 🎉#{'-' * 20}"
+    puts "#{'-' * 20}Music has been created 🎉#{'-' * 20}"
 
     album
   end
