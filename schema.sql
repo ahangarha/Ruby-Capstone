@@ -45,7 +45,13 @@ CREATE TABLE music_album(
     PRIMARY KEY (id)
 );
 
-CREATE TABLE game(
+CREATE TABLE authors(
+        id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+        first_name TEXT,
+        last_name TEXT
+);
+
+CREATE TABLE games(
         id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
         multiplayer BOOLEAN,
         last_played_at DATE,
