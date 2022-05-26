@@ -1,20 +1,18 @@
 CREATE TABLE labels(
     id INT GENERATED ALWAYS AS IDENTITY,
     title VARCHAR(255),
-    color VARCHAR(255),
-    PRIMARY KEY (id)
+    color VARCHAR(255)
 );
 
 CREATE TABLE authors(
-        id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-        first_name TEXT,
-        last_name TEXT
+    id INTEGER GENERATED ALWAYS AS IDENTITY,
+    first_name TEXT,
+    last_name TEXT
 );
 
 CREATE TABLE genres(
     id INT GENERATED ALWAYS AS IDENTITY,
-    name VARCHAR(255),
-    PRIMARY KEY (id)
+    name VARCHAR(255)
 );
 
 CREATE TABLE books(
@@ -45,11 +43,10 @@ CREATE TABLE music_album(
     FOREIGN KEY (genre_id) REFERENCES genres(id),
     FOREIGN KEY (author_id) REFERENCES authors(id),
     FOREIGN KEY (label_id) REFERENCES labels(id),
-    PRIMARY KEY (id)
 );
 
 CREATE TABLE games(
-        id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+        id INTEGER GENERATED ALWAYS AS IDENTITY,
         multiplayer BOOLEAN,
         last_played_at DATE,
         publish_date DATE,
